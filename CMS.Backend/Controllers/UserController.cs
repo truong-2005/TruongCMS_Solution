@@ -1,12 +1,12 @@
-﻿using CMS.Data;
+using CMS.Data;
 using CMS.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace duybao.Backend.Controllers
+namespace CMS.Backend.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "admin")]
     public class UserController : Controller
     {
         private readonly ApplicationDbContext _context;
