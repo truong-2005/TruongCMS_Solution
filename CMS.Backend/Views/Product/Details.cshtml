@@ -1,0 +1,58 @@
+﻿@model CMS.Data.Entities.Product
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+<div class="container mt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Product">Danh sách sản phẩm</a></li>
+            <li class="breadcrumb-item active">Chi tiết sản phẩm</li>
+        </ol>
+    </nav>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <img src="@Model.ImageUrl" class="img-fluid rounded-start" alt="@Model.Name" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <span class="badge bg-info text-dark mb-2">@Model.CategoryProduct?.Name</span>
+                            <h1 class="display-5 fw-bold text-primary">@Model.Name</h1>
+
+                            <h3 class="text-success fw-bold mt-3">@string.Format("{0:N0} VNĐ", Model.Price)</h3>
+
+                            <hr />
+
+                            <div class="mb-3">
+                                <h5 class="fw-bold">Mô tả sản phẩm:</h5>
+                                <p class="fs-5">@Model.Description</p>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="badge @(Model.StockQuantity > 0 ? "bg-success" : "bg-danger") fs-6">
+                                    @(Model.StockQuantity > 0 ? "Còn hàng" : "Hết hàng")
+                                </span>
+                                <span class="text-muted ms-2">Số lượng tồn kho: @Model.StockQuantity</span>
+                            </div>
+
+                            <div class="mt-4">
+                                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                                    <i class="bi bi-pencil"></i> Chỉnh sửa
+                                </a>
+                                <a asp-action="Index" class="btn btn-secondary">
+                                    <i class="bi bi-arrow-left"></i> Quay lại danh sách
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

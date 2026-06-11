@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CMS.Data.Entities.Product>
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Danh sách sản phẩm";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-dark">DANH SÁCH SẢN PHẨM</h2>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Thêm sản phẩm mới
+        </a>
+    </div>
+
+    <!-- Thanh tìm kiếm / lọc theo danh mục -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-md-4">
+                    <label class="form-label fw-bold">Danh mục sản phẩm</label>
+                    <select name="id" class="form-select" onchange="this.form.submit()">
+                        <option value="">-- Tất cả danh mục --</option>
+                        @foreach (var cat in (IEnumerable<CMS.Data.Entities.CategoryProduct>)ViewBag.CategoryProductListAll)
+                        {
+                            <option value="@cat.Id">@cat.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Bỏ lọc</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="Thumbnail" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <span class="badge bg-info text-dark">@item.CategoryProduct?.Name</span>
+                        <h5 class="card-title text-primary">@item.Name</h5>
+                        <p class="card-text text-truncate">@item.Description</p>
+                        <p class="text-success fw-bold">@string.Format("{0:N0} VNĐ", item.Price)</p>
+                        <p class="text-muted small">
+                            Tồn kho: @item.StockQuantity
+                        </p>
+                        <a href="/Product/Details/@item.Id" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-warning">
+                            <i class="bi bi-pencil"></i> Sửa
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-danger"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">
+                            <i class="bi bi-trash"></i> Xóa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

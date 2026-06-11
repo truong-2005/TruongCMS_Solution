@@ -6,6 +6,8 @@ namespace CMS.Data.Entities
 {
     public class Post
     {
+        public object CreatedAt;
+
         public int Id { get; set; }
         public string Title { get; set; } // Tiêu đề bài viết
         public string Content { get; set; } // Nội dung chi tiết

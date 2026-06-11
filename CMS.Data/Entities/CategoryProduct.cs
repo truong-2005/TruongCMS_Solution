@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +19,8 @@ namespace CMS.Data.Entities
 
         // Quan hệ: Một danh mục có nhiều sản phẩm
         public virtual ICollection<Product>? Products { get; set; }
+        public int? DisplayOrder { get; set; }
+        public bool IsActive { get; set; }
     }
 }
 
