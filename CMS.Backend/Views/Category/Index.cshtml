@@ -1,4 +1,10 @@
 ﻿@model IEnumerable<CMS.Data.Entities.Category>
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Quản lý danh mục";
+}
+
 <h2 class="text-primary">DANH SÁCH DANH MỤC (DỮ LIỆU THẬT LẤY TỪ DATABASE)</h2>
 <a asp-action="Create" class="btn btn-success">
     <i class="bi bi-plus-circle"></i> Thêm danh mục mới

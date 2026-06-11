@@ -1,25 +1,27 @@
-using CMS.Backend.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using CMS.Data; // Thư mục chứa DbContext [cite: 568]
+using System.Linq;
 
-namespace CMS.Backend.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly ApplicationDbContext _context;
+
+    public HomeController(ApplicationDbContext context)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        _context = context;
     }
+
+    public IActionResult Index()
+    {
+        // LINQ: Lấy 3 bài viết mới nhất
+        var latestPosts = _context.Posts
+            .Include(p => p.Category) // Đã xóa [cite_start] - Lấy kèm tên danh mục để hiển thị
+            .OrderByDescending(p => p.CreatedDate) // Đã xóa [cite_start] - Sắp xếp ngày mới nhất lên đầu
+            .Take(3) // Chỉ lấy đúng 3 bản tin đầu tiên 
+            .ToList();
+
+        return View(latestPosts);
+    }
+
 }
