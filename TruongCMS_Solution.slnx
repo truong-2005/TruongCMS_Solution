@@ -1,7 +1,7 @@
 <Solution>
   <Project Path="CMS.Backend/CMS.Backend.csproj" />
   <Project Path="CMS.Data/CMS.Data.csproj" />
-  <Project Path="D:/NguyenQuangTruong_ASP.NET/TruongCMS_Solution/cms.frontend/" Type="Website" DisplayName="cms.frontend">
+  <Project Path="D:/NguyenQuangTruong_ASP.NET/TruongCMS_Solution/cms.frontend/" Type="Website" DisplayName="cms.frontend" Id="bfc96697-7d92-84dd-ab7a-313652811c56">
     <BuildType Project="Debug" />
     <Properties Name="WebsiteProperties">
       <Property Name="Debug.AspNetCompiler.Debug" Value="&quot;True&quot;" />
