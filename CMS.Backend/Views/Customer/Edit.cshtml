@@ -1,0 +1,74 @@
+﻿@model CMS.Data.Entities.Customer
+
+@{
+    Layout = "_LayoutAdmin";
+}
+<h2>Cập nhật khách hàng</h2>
+
+<form asp-action="Edit" method="post">
+
+    <input type="hidden" asp-for="Id" />
+
+    <div asp-validation-summary="All"
+         class="text-danger">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FullName" class="form-label"></label>
+        <input asp-for="FullName"
+               class="form-control" />
+        <span asp-validation-for="FullName"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email"
+               class="form-control" />
+        <span asp-validation-for="Email"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Phone" class="form-label"></label>
+        <input asp-for="Phone"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <textarea asp-for="Address"
+                  class="form-control"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">
+            Mật khẩu mới
+        </label>
+
+        <input name="NewPassword"
+               type="password"
+               class="form-control" />
+
+        <small class="text-muted">
+            Để trống nếu không muốn đổi mật khẩu
+        </small>
+    </div>
+
+    <button type="submit"
+            class="btn btn-success">
+        Cập nhật
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Quay lại
+    </a>
+
+</form>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

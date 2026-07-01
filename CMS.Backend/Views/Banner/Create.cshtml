@@ -1,0 +1,100 @@
+﻿@model CMS.Data.Entities.Banner
+
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Thêm banner mới";
+}
+
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-header bg-primary text-white py-3 rounded-top-3">
+            <h4 class="mb-0"><i class="bi bi-plus-circle-fill"></i> THÊM BANNER MỚI</h4>
+        </div>
+        <div class="card-body p-4">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <!-- Left column: Primary information -->
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-secondary">Tiêu đề Banner:</label>
+                            <input asp-for="Title" class="form-control form-control-lg border-2 rounded-2" placeholder="Nhập tiêu đề banner..." required />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-secondary">Mô tả ngắn:</label>
+                            <textarea asp-for="Description" class="form-control border-2 rounded-2" rows="6" placeholder="Nhập mô tả ngắn cho banner..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <!-- Right column: Parameters and Actions -->
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold text-secondary">Đường dẫn liên kết (Link URL):</label>
+                            <input asp-for="LinkUrl" class="form-control border-2 rounded-2" placeholder="Ví dụ: /shop hoặc https://..." required />
+                            <span asp-validation-for="LinkUrl" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label fw-bold text-secondary">Thứ tự hiển thị:</label>
+                                <input asp-for="Order" type="number" min="0" class="form-control border-2 rounded-2" placeholder="0" required />
+                                <span asp-validation-for="Order" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-6 mb-3">
+                                <label class="form-label fw-bold text-secondary">Trạng thái:</label>
+                                <div class="form-check form-switch mt-2">
+                                    <input asp-for="IsActive" class="form-check-input border-2" type="checkbox" role="switch" checked>
+                                    <label class="form-check-label fw-bold text-secondary" for="IsActive">Kích hoạt</label>
+                                </div>
+                                <span asp-validation-for="IsActive" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">Hình ảnh Banner:</label>
+                            <input type="file" name="uploadImage" id="uploadImage" class="form-control border-2 rounded-2" accept="image/*" required />
+                            <div class="mt-2 text-center border rounded-2 p-2 bg-light d-none" id="imagePreviewContainer">
+                                <span class="d-block text-muted small mb-1">Xem trước ảnh:</span>
+                                <img id="imagePreview" src="" class="img-fluid rounded-2 shadow-sm" style="max-height: 150px; object-fit: contain;" />
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg shadow-sm">
+                                <i class="bi bi-cloud-arrow-up-fill"></i> Lưu Banner
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary btn-lg shadow-sm">
+                                <i class="bi bi-arrow-left-short"></i> Hủy & Quay lại
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Preview selected image before uploading
+        document.getElementById('uploadImage').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    document.getElementById('imagePreviewContainer').classList.remove('d-none');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('imagePreviewContainer').classList.add('d-none');
+            }
+        });
+    </script>
+}

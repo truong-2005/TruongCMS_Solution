@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -26,5 +26,6 @@ namespace CMS.Data.Entities
 
         [ForeignKey("ProductId")]
         public virtual Product? Product { get; set; }
+
     }
 }

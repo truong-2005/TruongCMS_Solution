@@ -1,0 +1,29 @@
+﻿@model CMS.Data.Entities.Order
+
+<div class="container mt-4" style="max-width:700px;">
+    <h2 class="text-warning mb-4">
+        CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG
+    </h2>
+
+    <form asp-action="Edit" method="post">
+        <!-- ID đơn hàng -->
+        <label class="fw-bold mb-1"> Mã đơn hàng </label>
+        <input asp-for="Id" class="form-control mb-3" readonly />
+        <!-- Ngày đặt -->
+        <label class="fw-bold mb-1"> Ngày đặt hàng</label>
+        <input asp-for="OrderDate" type="date" class="form-control mb-3" readonly />
+        <!-- Trạng thái -->
+        <label class="fw-bold mb-1"> Trạng thái đơn hàng </label>
+        <select asp-for="Status" class="form-select mb-3">
+            <option value="0">Chờ duyệt</option>
+            <option value="1">Đang giao</option>
+            <option value="2">Đã giao </option>
+        </select>
+        <!-- Ghi chú -->
+        <label class="fw-bold mb-1">Ghi chú</label>
+        <textarea asp-for="Notes" class="form-control mb-3"rows="4" placeholder="Ví dụ: Đã giao thành công"></textarea>
+        <!-- Button -->
+        <button type="submit" class="btn btn-warning">Cập nhật trạng thái</button>
+        <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>

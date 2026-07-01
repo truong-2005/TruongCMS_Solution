@@ -39,7 +39,6 @@
                     <h4 class="text-white">TruongCMS-Admin</h4>
                 </div>
 
-                <!-- Phần hiển thị thông tin người dùng và nút đăng xuất -->
                 <div class="p-3 border-bottom border-secondary text-center">
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -64,6 +63,11 @@
                     <a asp-controller="Post" asp-action="Index">
                         <i class="bi bi-file-earmark-post"></i> Quản lý Bài viết
                     </a>
+
+                    <a asp-controller="Banner" asp-action="Index">
+                        <i class="bi bi-images"></i> Quản lý Banner
+                    </a>
+
                     <a asp-controller="User" asp-action="Index">
                         <i class="bi bi-people"></i> Quản lý Thành viên
                     </a>
@@ -79,9 +83,9 @@
                     <a asp-controller="Order" asp-action="Index">
                         <i class="bi bi-grid"></i> Đơn hàng
                     </a>
-                    <a asp-controller="OrderDetail" asp-action="Index">
+                    @* <a asp-controller="OrderDetail" asp-action="Index">
                         <i class="bi bi-grid"></i> Đơn hàng chi tiết
-                    </a>
+                    </a> *@
                 </div>
             </nav>
 

@@ -1,5 +1,6 @@
 using CMS.Backend.Models;
 using CMS.Data; // Thư mục chứa DbContext [cite: 568]
+using CMS.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         // LINQ: Lấy 3 bài viết mới nhất
-        var latestPosts = _context.Posts
+        List<Post> latestPosts = _context.Posts
             .Include(p => p.Category) // Lấy kèm tên danh mục
             .OrderByDescending(p => p.CreatedDate) // Mới nhất lên đầu
             .Take(3)

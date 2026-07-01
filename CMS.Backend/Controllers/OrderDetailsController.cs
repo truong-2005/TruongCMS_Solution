@@ -1,4 +1,4 @@
-﻿
+
 
 using CMS.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +18,7 @@ namespace CMS.Controllers
         }
 
         // DANH SÁCH CHI TIẾT ĐƠN HÀNG
+        [HttpGet]
         public IActionResult Index()
         {
             var orderDetails = _context.OrderDetails.ToList();
